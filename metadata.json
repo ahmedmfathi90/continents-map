@@ -1,0 +1,6 @@
+{
+  "name": "خصائص قارات العالم",
+  "description": "استكشف الخصائص الجغرافية لقارات العالم - درس دراسات اجتماعية للصف الخامس الابتدائي.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
