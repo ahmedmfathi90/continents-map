@@ -6,7 +6,7 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    // 1. استخدام مسار نسبي ليعمل المشروع في أي مكان (جيتهاب، نيتليفاي، أو دومين الشركة)
+    // 1. يفضل تركها './' (مسار نسبي) لكي تقرأ الملفات من نفس مكان وجود mymovie.html تلقائياً
     base: './',
 
     plugins: [react(), tailwindcss()],
@@ -16,9 +16,15 @@ export default defineConfig(({ mode }) => {
       },
     },
 
-    // 2. توجيه مخرجات الـ Build لمجلد docs بدلاً من dist
+    // 2. توجيه مخرجات الـ Build وتغيير اسم ملف الـ HTML
     build: {
       outDir: 'docs',
+      rollupOptions: {
+        input: {
+          // السطر ده بيخلي Vite يأخد ملف index.html الرئيسي ويبنيه باسم mymovie.html
+          mymovie: path.resolve(__dirname, 'index.html'),
+        },
+      },
     }
   };
 });

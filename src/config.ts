@@ -15,13 +15,11 @@ export const appConfig = {
   },
 
   // إعدادات الأصوات (مسارات ومسميات الملفات)
-  audio: {
-    clickEffect: "/sounds/click.mp3",  // مسار صوت النقرات (الكليكات)
-    hintSound: "/sounds/hint.mp3",     // مسار صوت نافذة التعليمات
+ audio: {
+    clickEffect: "./sounds/click.mp3",  // لاحظ النقطة قبل السلاش
+    hintSound: "./sounds/hint.mp3",    // لاحظ النقطة
     
-    // دالة تحدد مسار ملف صوت القارة بناءً على اسمها
-    // إذا أردت تغيير الامتداد إلى .wav أو تغيير المسار يمكنك تعديله هنا
-    getContinentSound: (continentId: string) => `/sounds/${continentId}.mp3`
+   getContinentSound: (continentId: string) => `./sounds/${continentId}.mp3`
   },
 
   // نصوص عامة في التطبيق
