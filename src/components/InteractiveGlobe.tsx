@@ -177,7 +177,11 @@ export const InteractiveGlobe: React.FC<InteractiveGlobeProps> = ({
             style={{ width: "100%", height: "100%", maxHeight: "90vh", outline: "none" }}
           >
             {isFlat ? (
-              renderGeographies(selectedContinent, onSelectContinent)
+              <>
+                <Sphere stroke="none" fill="#5692C4" id="sphere-flat" />
+                <Graticule stroke="#FFFFFF" strokeWidth={0.5} strokeOpacity={0.15} />
+                {renderGeographies(selectedContinent, onSelectContinent)}
+              </>
             ) : (
               <>
                 <defs>

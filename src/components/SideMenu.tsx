@@ -12,13 +12,6 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isFlat, toggleMapType, goHom
 
   const navItems = [
     {
-      id: 'home',
-      icon: <Home size={28} />,
-      label: 'الرئيسية (Home)',
-      onClick: goHome,
-      color: "hover:bg-blue-500/20 hover:text-blue-400"
-    },
-    {
       id: 'map',
       icon: isFlat ? <Globe size={28} /> : <Map size={28} />,
       label: isFlat ? 'مجسم الكرة الأرضية' : 'خريطة مسطحة',
@@ -28,12 +21,12 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isFlat, toggleMapType, goHom
   ];
 
   return (
-    <div className="fixed right-0 top-1/2 -translate-y-1/2 flex flex-col gap-2 sm:gap-4 p-2 sm:p-4 z-40" dir="rtl">
+    <div className="fixed bottom-6 right-6 flex flex-col gap-2 sm:gap-4 z-40" dir="rtl">
       {navItems.map((item) => (
-        <div key={item.id} className="relative group flex items-center">
+        <div key={item.id} className="relative group flex items-center justify-center">
           <button
             onClick={item.onClick}
-            className={`p-2 sm:p-4 bg-slate-800/80 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-xl text-slate-300 border border-slate-700/50 transition-all duration-300 transform group-hover:-translate-x-2 ${item.color}`}
+            className={`p-3 sm:p-4 bg-slate-800/80 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-xl text-slate-300 border border-slate-700/50 transition-all duration-300 transform group-hover:-translate-y-2 ${item.color}`}
           >
             {item.icon}
           </button>

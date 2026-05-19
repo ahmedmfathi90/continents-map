@@ -58,7 +58,7 @@ export const ContinentPanel: React.FC<ContinentPanelProps> = ({
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: "-100%", opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="fixed top-0 left-0 h-full w-full md:w-[400px] bg-slate-900/90 backdrop-blur-xl border-r border-slate-700/50 shadow-2xl p-4 sm:p-6 md:p-10 flex flex-col z-40"
+          className="fixed top-0 left-0 h-full w-full landscape:w-[50vw] md:w-[400px] md:landscape:w-[400px] bg-slate-900/90 backdrop-blur-xl border-r border-slate-700/50 shadow-2xl p-4 sm:p-6 md:p-10 flex flex-col z-40"
           dir="rtl"
         >
           <div className="flex justify-between items-center mb-8">

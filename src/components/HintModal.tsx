@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Play } from 'lucide-react';
 import { appConfig } from '../config';
@@ -10,13 +10,25 @@ interface HintModalProps {
 export const HintModal: React.FC<HintModalProps> = ({ onStart }) => {
   const [isVisible, setIsVisible] = useState(true);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audioEl = audioRef.current;
+    if (isVisible && audioEl) {
+      audioEl.play().catch(e => console.warn("Audio play prevented", e));
+    }
+
+    return () => {
+      if (audioEl) {
+        audioEl.pause();
+        audioEl.currentTime = 0;
+      }
+    };
+  }, [isVisible]);
+
   const handleStart = () => {
     setIsVisible(false);
     onStart();
-
-    // Play hint audio
-    const hintAudio = new Audio(appConfig.audio.hintSound);
-    hintAudio.play().catch(e => console.warn("Audio play prevented", e));
   };
 
   return (
@@ -35,6 +47,7 @@ export const HintModal: React.FC<HintModalProps> = ({ onStart }) => {
             transition={{ delay: 0.2, type: "spring" }}
             className="bg-slate-900 border border-slate-700 p-8 rounded-3xl max-w-xl w-full shadow-2xl relative overflow-hidden text-center"
           >
+            <audio ref={audioRef} src={appConfig.audio.hintSound} autoPlay className="hidden" />
             <div className="absolute top-0 right-0 p-4">
               <button onClick={() => setIsVisible(false)} className="text-slate-400 hover:text-white transition-colors">
                 <X size={24} />
